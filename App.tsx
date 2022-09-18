@@ -3,10 +3,12 @@ import { View } from 'react-native'
 
 import { useFonts } from 'expo-font'
 
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
+
 import { ThemeProvider } from 'styled-components/native'
 import { theme } from '@global/theme'
 
-import { Home } from '@screens/Home'
+import { Details } from '@screens/Details'
 
 export const App: React.FC = () => {
   const [fontsLoaded] = useFonts({
@@ -16,7 +18,9 @@ export const App: React.FC = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      {fontsLoaded ? <Home /> : <View />}
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        {fontsLoaded ? <Details /> : <View />}
+      </GestureHandlerRootView>
     </ThemeProvider>
   )
 }
