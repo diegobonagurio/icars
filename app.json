@@ -1,0 +1,18 @@
+{
+  "expo": {
+    "name": "iCars",
+    "slug": "icars-lucasaugusts",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "buildNumber": "1.0.0",
+      "bundleIdentifier": "com.icars.lucasaugusts"
+    },
+    "android": {
+      "versionCode": 1,
+      "package": "com.icars.lucasaugusts"
+    }
+  }
+}
