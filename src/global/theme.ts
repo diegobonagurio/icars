@@ -12,10 +12,17 @@ export const theme = {
     },
     body: '#343434',
 
+    gray: {
+      100: '#959595'
+    },
+
     background: {
       100: '#FFFFFF',
       200: '#F8F8F8'
     }
   },
-  FONTS: {}
+  FONTS: {
+    regular: 'SF_PRO-Regular',
+    medium: 'SF_PRO-Medium'
+  }
 }
