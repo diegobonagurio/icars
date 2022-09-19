@@ -5,6 +5,7 @@ import { StatusBar } from 'expo-status-bar'
 import { CarInformation } from '@components/CarInformation'
 import { CarSlide } from '@components/CarSlide'
 import { AboutCar } from '@components/AboutCar'
+import { UserReviews } from '@components/UserReviews'
 import { AddComment } from '@components/AddComment'
 
 import {
@@ -36,6 +37,7 @@ export const Details: React.FC = () => {
 
       <Content>
         <AboutCar />
+        <UserReviews />
       </Content>
 
       <Footer />

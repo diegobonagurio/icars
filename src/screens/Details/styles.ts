@@ -70,7 +70,7 @@ export const Footer = styled(LinearGradient).attrs(({ theme }) => {
   }
 })`
   width: 100%;
-  height: 80px;
+  height: ${Platform.OS === 'ios' ? getBottomSpace() + 80 : 80}px;
 
   position: absolute;
   bottom: 0;
