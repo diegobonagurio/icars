@@ -9,7 +9,7 @@ import {
   useAnimatedStyle,
   withTiming,
   Easing,
-  FadeInRight
+  FadeIn
 } from 'react-native-reanimated'
 
 import { API } from '@services/api'
@@ -42,8 +42,8 @@ export const CarCard: React.FC<Props> = ({ data, ...rest }) => {
 
   const scale = useSharedValue(1)
 
-  const entering = FadeInRight.delay(data.id * 100)
-    .duration(200)
+  const entering = FadeIn.delay(data.id * 100)
+    .duration(180)
     .easing(Easing.inOut(Easing.ease))
 
   const scaleAnimationStyle = useAnimatedStyle(() => {
