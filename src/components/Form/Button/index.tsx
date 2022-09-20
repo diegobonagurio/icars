@@ -1,15 +1,24 @@
 import React from 'react'
-import { TouchableOpacityProps } from 'react-native'
+import { TouchableOpacityProps, ActivityIndicator } from 'react-native'
+
+import { useTheme } from 'styled-components/native'
 
 import { Container, Title } from './styles'
 
-export const Button: React.FC<TouchableOpacityProps> = ({
-  children,
-  ...rest
-}) => {
+interface Props extends TouchableOpacityProps {
+  loading?: boolean
+}
+
+export const Button: React.FC<Props> = ({ children, loading, ...rest }) => {
+  const { COLORS } = useTheme()
+
   return (
-    <Container activeOpacity={0.9} {...rest}>
-      <Title>{children}</Title>
+    <Container activeOpacity={0.9} disabled={loading} {...rest}>
+      {loading ? (
+        <ActivityIndicator color={COLORS.background[100]} size="small" />
+      ) : (
+        <Title>{children}</Title>
+      )}
     </Container>
   )
 }

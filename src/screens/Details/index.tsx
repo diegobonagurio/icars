@@ -94,7 +94,7 @@ export const Details: React.FC = () => {
       </AddComment>
 
       <BottomSheet ref={bottomSheetAddNote}>
-        <AddCarNote />
+        <AddCarNote carId={car.id} />
       </BottomSheet>
     </Container>
   )
