@@ -6,9 +6,16 @@ import AnonymousSvg from '@assets/svgs/anonymous.svg'
 
 import { Container, Content, Name, NumberStars, Star, Message } from './styles'
 
+interface Props {
+  data: {
+    content: string
+    note: number
+  }
+}
+
 const stars = [1, 2, 3, 4, 5]
 
-export const UserComment: React.FC = () => {
+export const UserComment: React.FC<Props> = ({ data }) => {
   const { COLORS } = useTheme()
 
   return (
@@ -20,13 +27,14 @@ export const UserComment: React.FC = () => {
 
         <NumberStars>
           {stars.map(star => (
-            <Star key={star} color={COLORS.star} />
+            <Star
+              key={star}
+              color={data.note >= star ? COLORS.star : COLORS.gray[200]}
+            />
           ))}
         </NumberStars>
 
-        <Message>
-          Carro bastante futurista e confortável recomendo bastante!
-        </Message>
+        <Message>{data.content}</Message>
       </Content>
     </Container>
   )

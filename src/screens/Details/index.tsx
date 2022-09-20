@@ -5,7 +5,7 @@ import { StatusBar } from 'expo-status-bar'
 import { useNavigation, useRoute } from '@react-navigation/native'
 
 import { API } from '@services/api'
-import { ICarDTO } from '@dtos/CarDTO'
+import { ICarDTO } from '@dtos/carDTO'
 
 import { CarInformation } from '@components/CarInformation'
 import { CarSlide } from '@components/CarSlide'
@@ -73,7 +73,7 @@ export const Details: React.FC = () => {
 
       <Content>
         <AboutCar description={car.description} />
-        <UserReviews />
+        <UserReviews carId={car.id} />
       </Content>
 
       <Footer />

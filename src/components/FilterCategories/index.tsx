@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { ICategoryDTO } from '@dtos/CategoryDTO'
+import { ICategoryDTO } from '@dtos/categoryDTO'
 
 import { Brand } from '@components/Brand'
 

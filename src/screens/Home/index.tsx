@@ -8,8 +8,8 @@ import { useNavigation } from '@react-navigation/native'
 import ICarsSvg from '@assets/svgs/logo.svg'
 
 import { API } from '@services/api'
-import { ICategoryDTO } from '@dtos/CategoryDTO'
-import { ICarDTO } from '@dtos/CarDTO'
+import { ICategoryDTO } from '@dtos/categoryDTO'
+import { ICarDTO } from '@dtos/carDTO'
 
 import { FilterCategories } from '@components/FilterCategories'
 import { CarCard } from '@components/CarCard'

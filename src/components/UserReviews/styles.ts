@@ -3,6 +3,7 @@ import styled from 'styled-components/native'
 import { Entypo } from '@expo/vector-icons'
 
 export const Container = styled.View`
+  flex: 1;
   margin-top: 16px;
 `
 
@@ -49,4 +50,18 @@ export const TotalRatings = styled.Text`
   font-size: 14px;
   font-family: ${({ theme }) => theme.FONTS.medium};
   color: ${({ theme }) => theme.COLORS.gray[100]};
+`
+
+export const LoadReviews = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`
+
+export const MessageWithoutEvaluation = styled.Text`
+  font-size: 16px;
+  font-family: ${({ theme }) => theme.FONTS.regular};
+  color: ${({ theme }) => theme.COLORS.body};
+
+  margin-top: 8px;
 `

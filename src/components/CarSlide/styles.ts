@@ -1,7 +1,7 @@
 import styled from 'styled-components/native'
 import { FlatList, FlatListProps, Dimensions } from 'react-native'
 
-import { IVehicleImages } from '@dtos/CarDTO'
+import { IVehicleImages } from '@dtos/carDTO'
 
 const { width } = Dimensions.get('window')
 

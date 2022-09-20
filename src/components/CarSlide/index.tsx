@@ -10,7 +10,7 @@ import {
   Photography,
   Dots
 } from './styles'
-import { IVehicleImages } from '@dtos/CarDTO'
+import { IVehicleImages } from '@dtos/carDTO'
 
 interface Props {
   carPhotographs: IVehicleImages[]

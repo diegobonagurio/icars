@@ -1,4 +1,4 @@
-import { ICarDTO } from '@dtos/CarDTO'
+import { ICarDTO } from '@dtos/carDTO'
 
 type RootStackParamList = {
   Home: undefined

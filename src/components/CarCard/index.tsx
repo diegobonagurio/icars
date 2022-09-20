@@ -13,7 +13,7 @@ import {
 } from 'react-native-reanimated'
 
 import { API } from '@services/api'
-import { ICarDTO } from '@dtos/CarDTO'
+import { ICarDTO } from '@dtos/carDTO'
 
 import {
   Container,

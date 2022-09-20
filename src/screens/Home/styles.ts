@@ -3,7 +3,7 @@ import { FlatList, FlatListProps, Platform } from 'react-native'
 
 import { LinearGradient } from 'expo-linear-gradient'
 
-import { ICarDTO } from '@dtos/CarDTO'
+import { ICarDTO } from '@dtos/carDTO'
 
 import {
   getStatusBarHeight,
