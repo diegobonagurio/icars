@@ -8,7 +8,11 @@ import {
   Reading
 } from './styles'
 
-export const AboutCar: React.FC = () => {
+interface Props {
+  description: string
+}
+
+export const AboutCar: React.FC<Props> = ({ description }) => {
   const [numberOfLines, setNumberOfLines] = useState(3)
 
   function handleReadMoreOrReadLess() {
@@ -19,11 +23,7 @@ export const AboutCar: React.FC = () => {
     <Container>
       <Title>Descrição</Title>
 
-      <Description numberOfLines={numberOfLines}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque amet cum
-        maxime similique dolorum possimus ex deserunt. Non nulla ad soluta at
-        praesentium doloribus possimus alias et quisquam, minima laborum?
-      </Description>
+      <Description numberOfLines={numberOfLines}>{description}</Description>
 
       <TouchableReading onPress={handleReadMoreOrReadLess}>
         <Reading>{numberOfLines > 0 ? 'Ler mais' : 'Ler menos'}</Reading>

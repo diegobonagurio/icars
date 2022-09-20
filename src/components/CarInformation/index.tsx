@@ -6,22 +6,26 @@ import { SvgUri } from 'react-native-svg'
 
 import { Container, Brand, Information, Name, Year } from './styles'
 
-export const CarInformation: React.FC = () => {
+interface Props {
+  data: {
+    brand: string
+    name: string
+    year: string
+  }
+}
+
+export const CarInformation: React.FC<Props> = ({ data }) => {
   const { COLORS } = useTheme()
 
   return (
     <Container>
       <Brand>
-        <SvgUri
-          uri="https://cdn.discordapp.com/attachments/788845721797394485/1021146536639483924/tesla.svg"
-          fill={COLORS.heading[200]}
-          width={24}
-        />
+        <SvgUri uri={data.brand} fill={COLORS.heading[200]} width={24} />
       </Brand>
 
       <Information>
-        <Name>Tesla Model X</Name>
-        <Year>2018</Year>
+        <Name>{data.name}</Name>
+        <Year>{data.year}</Year>
       </Information>
     </Container>
   )

@@ -10,14 +10,11 @@ import {
   Photography,
   Dots
 } from './styles'
+import { IVehicleImages } from '@dtos/CarDTO'
 
-import CarAImg from '@assets/Chevrolet/1.png'
-import CarBImg from '@assets/Chevrolet/2.png'
-import CarCImg from '@assets/Chevrolet/3.png'
-import CarDImg from '@assets/Chevrolet/4.png'
-
-const data = [CarAImg, CarBImg, CarCImg, CarDImg]
-
+interface Props {
+  carPhotographs: IVehicleImages[]
+}
 interface IChangePhotography {
   viewableItems: ViewToken[]
   changed: ViewToken[]
@@ -27,7 +24,7 @@ const viewabilityConfig = {
   itemVisiblePercentThreshold: 10
 }
 
-export const CarSlide: React.FC = () => {
+export const CarSlide: React.FC<Props> = ({ carPhotographs }) => {
   const [photographyIndex, setPhotographyIndex] = useState(0)
 
   const indexChanged = useRef((info: IChangePhotography) => {
@@ -38,11 +35,11 @@ export const CarSlide: React.FC = () => {
   return (
     <Container>
       <ListPhotographs
-        data={data}
+        data={carPhotographs}
         keyExtractor={(_, index) => String(index)}
         renderItem={({ item }) => (
           <Content>
-            <Photography source={item} resizeMode="cover" />
+            <Photography source={{ uri: item.url }} resizeMode="cover" />
           </Content>
         )}
         onViewableItemsChanged={indexChanged.current}
@@ -50,7 +47,7 @@ export const CarSlide: React.FC = () => {
       />
 
       <Dots>
-        {data.map((_, index) => (
+        {carPhotographs.map((_, index) => (
           <Dot key={index} activated={index === photographyIndex} />
         ))}
       </Dots>

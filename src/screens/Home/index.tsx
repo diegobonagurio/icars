@@ -3,6 +3,8 @@ import { Alert } from 'react-native'
 
 import { StatusBar } from 'expo-status-bar'
 
+import { useNavigation } from '@react-navigation/native'
+
 import ICarsSvg from '@assets/svgs/logo.svg'
 
 import { API } from '@services/api'
@@ -16,6 +18,8 @@ import { CarLoading } from '@components/CarLoading'
 import { Container, CarList, Footer } from './styles'
 
 export const Home: React.FC = () => {
+  const navigation = useNavigation()
+
   const [categories, setCategories] = useState<ICategoryDTO[]>([])
   const [cars, setCars] = useState<ICarDTO[]>([])
 
@@ -23,6 +27,10 @@ export const Home: React.FC = () => {
 
   const [isLoading, setIsLoading] = useState(true)
   const [isLoadingCars, setIsLoadingCars] = useState(false)
+
+  function handleViewCarDetails(car: ICarDTO) {
+    navigation.navigate('Details', { car })
+  }
 
   async function loadCategories() {
     try {
@@ -95,7 +103,12 @@ export const Home: React.FC = () => {
             <CarList
               data={cars}
               keyExtractor={({ id }) => String(id)}
-              renderItem={({ item: carData }) => <CarCard data={carData} />}
+              renderItem={({ item: carData }) => (
+                <CarCard
+                  data={carData}
+                  onPress={() => handleViewCarDetails(carData)}
+                />
+              )}
             />
           )}
 

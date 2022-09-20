@@ -1,12 +1,16 @@
 import styled from 'styled-components/native'
 import { FlatList, FlatListProps, Dimensions } from 'react-native'
 
+import { IVehicleImages } from '@dtos/CarDTO'
+
 const { width } = Dimensions.get('window')
 
 export const Container = styled.View``
 
 export const ListPhotographs = styled(
-  FlatList as new (props: FlatListProps<string>) => FlatList<string>
+  FlatList as new (
+    props: FlatListProps<IVehicleImages>
+  ) => FlatList<IVehicleImages>
 ).attrs({
   showsHorizontalScrollIndicator: false,
   horizontal: true,
