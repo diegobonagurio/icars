@@ -23,7 +23,8 @@ module.exports = function(api) {
             '@assets': './src/assets',
             '@utils': './src/utils',
             '@helpers': './src/helpers',
-            '@constants': './src/constants'
+            '@constants': './src/constants',
+            '@contents': './src/contents'
           }
         }
       ]

@@ -17,7 +17,8 @@
       "@assets/*": ["./src/assets/*"],
       "@utils/*": ["./src/utils/*"],
       "@helpers/*": ["./src/helpers/*"],
-      "@constants/*": ["./src/constants/*"]
+      "@constants/*": ["./src/constants/*"],
+      "@contents/*": ["./src/contents/*"]
     }
   }
 }
