@@ -13,7 +13,7 @@ import { rgba } from 'polished'
 
 export const Container = styled.View`
   flex: 1;
-  padding-top: ${Platform.OS === 'ios' ? getStatusBarHeight() + 16 : 64}px;
+  padding-top: ${Platform.OS === 'ios' ? getStatusBarHeight() + 32 : 64}px;
 
   background-color: ${({ theme }) => theme.COLORS.background[200]};
 `

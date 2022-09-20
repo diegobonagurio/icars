@@ -13,15 +13,17 @@ import {
   Easing
 } from 'react-native-reanimated'
 
+import { SvgUri } from 'react-native-svg'
+
 import { Container, All } from './styles'
 
 interface Props extends TouchableWithoutFeedbackProps {
-  name: string
+  logo?: string
   activated?: boolean
   all?: boolean
 }
 
-export const Brand: React.FC<Props> = ({ name, activated, all, ...rest }) => {
+export const Brand: React.FC<Props> = ({ logo, activated, all, ...rest }) => {
   const { COLORS } = useTheme()
 
   const active = useSharedValue(0)
@@ -46,7 +48,14 @@ export const Brand: React.FC<Props> = ({ name, activated, all, ...rest }) => {
   return (
     <TouchableWithoutFeedback {...rest}>
       <Container style={activeAnimationStyle}>
-        {all && <All activated={activated}>{name}</All>}
+        {all ? (
+          <All activated={activated}>Tudo</All>
+        ) : (
+          <SvgUri
+            uri={logo!}
+            fill={activated ? COLORS.background[100] : COLORS.heading[100]}
+          />
+        )}
       </Container>
     </TouchableWithoutFeedback>
   )

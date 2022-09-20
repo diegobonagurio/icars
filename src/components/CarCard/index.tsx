@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   TouchableWithoutFeedback,
   TouchableWithoutFeedbackProps
@@ -8,17 +8,17 @@ import {
   useSharedValue,
   useAnimatedStyle,
   withTiming,
-  Easing
+  Easing,
+  FadeInRight
 } from 'react-native-reanimated'
 
+import { API } from '@services/api'
 import { ICarDTO } from '@dtos/CarDTO'
-
-import TeslaSvg from '@assets/svgs/tesla.svg'
-import TestImg from '@assets/svgs/test.png'
 
 import {
   Container,
   Card,
+  Brand,
   Thumbnail,
   Footer,
   Information,
@@ -38,7 +38,13 @@ const animationConfig = {
 }
 
 export const CarCard: React.FC<Props> = ({ data, ...rest }) => {
+  const [carBrand, setCarBrand] = useState('')
+
   const scale = useSharedValue(1)
+
+  const entering = FadeInRight.delay(data.id * 100)
+    .duration(200)
+    .easing(Easing.inOut(Easing.ease))
 
   const scaleAnimationStyle = useAnimatedStyle(() => {
     return {
@@ -54,17 +60,34 @@ export const CarCard: React.FC<Props> = ({ data, ...rest }) => {
     scale.value = withTiming(1, animationConfig)
   }
 
+  useEffect(() => {
+    async function loadCarBrand() {
+      const { data: response } = await API.get('/categories')
+
+      const brandLogo = response.data.find(
+        (brand: ICarDTO) => brand.id === data.categoryId
+      ).logo
+
+      setCarBrand(brandLogo)
+    }
+
+    loadCarBrand()
+  }, [])
+
   return (
     <TouchableWithoutFeedback
       onPressIn={handlePressIn}
       onPressOut={handlePressOut}
       {...rest}
     >
-      <Container style={scaleAnimationStyle}>
+      <Container entering={entering} style={scaleAnimationStyle}>
         <Card>
-          <TeslaSvg />
+          <Brand uri={carBrand} />
 
-          <Thumbnail source={TestImg} resizeMode="cover" />
+          <Thumbnail
+            source={{ uri: data.vehicleImages[0].url }}
+            resizeMode="cover"
+          />
 
           <Footer>
             <Information>

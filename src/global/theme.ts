@@ -17,7 +17,8 @@ export const theme = {
     gray: {
       100: '#959595',
       200: '#E7E7E7',
-      300: '#ECECEC'
+      300: '#ECECEC',
+      400: '#D3D3D3'
     },
 
     background: {

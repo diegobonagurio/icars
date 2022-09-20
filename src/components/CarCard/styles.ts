@@ -1,6 +1,7 @@
 import styled from 'styled-components/native'
 
 import Animated from 'react-native-reanimated'
+import { SvgUri } from 'react-native-svg'
 
 import { rgba } from 'polished'
 
@@ -27,13 +28,25 @@ export const Card = styled.View`
   width: 100%;
   height: 115px;
 
-  justify-content: space-between;
+  justify-content: flex-end;
 
   border-radius: 16px;
 
   padding: 16px;
 
   background-color: ${({ theme }) => theme.COLORS.background[100]};
+`
+
+export const Brand = styled(SvgUri).attrs(({ theme }) => {
+  return {
+    fill: theme.COLORS.gray[400]
+  }
+})`
+  position: absolute;
+  top: 16px;
+  left: 14px;
+
+  transform: scale(0.8);
 `
 
 export const Thumbnail = styled.Image`

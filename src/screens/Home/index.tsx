@@ -1,58 +1,107 @@
-import React from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
+import { Alert } from 'react-native'
 
 import { StatusBar } from 'expo-status-bar'
 
 import ICarsSvg from '@assets/svgs/logo.svg'
 
-import { BrandFilter } from '@components/BrandFilter'
+import { API } from '@services/api'
+import { ICategoryDTO } from '@dtos/CategoryDTO'
+import { ICarDTO } from '@dtos/CarDTO'
+
+import { FilterCategories } from '@components/FilterCategories'
 import { CarCard } from '@components/CarCard'
+import { CarLoading } from '@components/CarLoading'
 
 import { Container, CarList, Footer } from './styles'
 
-const cars = [
-  {
-    id: '1',
-    name: 'Tesla Model X',
-    year: '2018'
-  },
-  {
-    id: '2',
-    name: 'Chevrolet Corvette',
-    year: '2018'
-  },
-  {
-    id: '3',
-    name: 'TBMW 3 Series Sedan',
-    year: '2020'
-  },
-  {
-    id: '4',
-    name: 'TBMW 3 Series Sedan',
-    year: '2020'
-  },
-  {
-    id: '5',
-    name: 'TBMW 3 Series Sedan',
-    year: '2020'
-  }
-]
-
 export const Home: React.FC = () => {
+  const [categories, setCategories] = useState<ICategoryDTO[]>([])
+  const [cars, setCars] = useState<ICarDTO[]>([])
+
+  const [selectedCategory, setSelectedCategory] = useState(0)
+
+  const [isLoading, setIsLoading] = useState(true)
+  const [isLoadingCars, setIsLoadingCars] = useState(false)
+
+  async function loadCategories() {
+    try {
+      const { data: response } = await API.get('/categories')
+      return response.data
+    } catch {
+      throw new Error('Não foi possível listar categorias.')
+    }
+  }
+
+  async function loadCategoryCars(categoryId: number) {
+    try {
+      const { data: response } = await API.get(
+        `/vehicles/${categoryId < 1 ? 'all' : categoryId}`
+      )
+      return response.data
+    } catch {
+      throw new Error('Não foi possível listar os carros dessa categoria.')
+    }
+  }
+
+  const loadCarBySelectedCategory = useCallback(async () => {
+    try {
+      setIsLoadingCars(true)
+      const data = await loadCategoryCars(selectedCategory)
+      setCars(data)
+    } catch (error) {
+      Alert.alert('Ocorreu um erro', error.message)
+    } finally {
+      setIsLoadingCars(false)
+    }
+  }, [selectedCategory])
+
+  useEffect(() => {
+    if (isLoading) {
+      Promise.all([loadCategories(), loadCategoryCars(selectedCategory)]).then(
+        ([loadedCategories, loadedCars]) => {
+          setCategories(loadedCategories)
+          setCars(loadedCars)
+
+          setIsLoading(false)
+        }
+      )
+    }
+  }, [])
+
+  useEffect(() => {
+    loadCarBySelectedCategory()
+  }, [selectedCategory])
+
   return (
     <Container>
       <StatusBar style="dark" translucent backgroundColor="transparent" />
 
-      <ICarsSvg style={{ marginLeft: 24 }} />
+      {isLoading ? (
+        <></>
+      ) : (
+        <>
+          <ICarsSvg style={{ marginLeft: 24 }} />
 
-      <BrandFilter />
+          <FilterCategories
+            brands={categories}
+            onChange={setSelectedCategory}
+            loading={isLoadingCars}
+          />
 
-      <CarList
-        data={cars}
-        keyExtractor={({ id }) => id}
-        renderItem={({ item }) => <CarCard data={item} />}
-      />
+          {isLoadingCars ? (
+            <CarLoading />
+          ) : (
+            <CarList
+              data={cars}
+              keyExtractor={({ id }) => String(id)}
+              renderItem={({ item: carData }) => <CarCard data={carData} />}
+            />
+          )}
 
-      <Footer />
+          <Footer />
+        </>
+      )}
     </Container>
   )
 }
