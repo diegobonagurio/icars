@@ -1,13 +1,10 @@
 import styled from 'styled-components/native'
-import { Dimensions } from 'react-native'
 
 import { Feather } from '@expo/vector-icons'
 
 import Animated from 'react-native-reanimated'
 
 import { rgba } from 'polished'
-
-const { width } = Dimensions.get('window')
 
 export const Container = styled(Animated.View).attrs({
   shadowColor: rgba('black', 0.05),
@@ -29,7 +26,7 @@ export const Container = styled(Animated.View).attrs({
   border-radius: 30px;
 
   position: absolute;
-  right: ${width / 2 - 32}px;
+  right: 24px;
   bottom: 36px;
 
   background-color: ${({ theme }) => theme.COLORS.brand[100]};

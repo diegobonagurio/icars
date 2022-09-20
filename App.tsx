@@ -8,6 +8,8 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { ThemeProvider } from 'styled-components/native'
 import { theme } from '@global/theme'
 
+// import { Details } from '@screens/Details'
+import { Home } from '@screens/Home'
 import { Details } from '@screens/Details'
 
 export const App: React.FC = () => {
@@ -19,7 +21,7 @@ export const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <GestureHandlerRootView style={{ flex: 1 }}>
-        {fontsLoaded ? <Details /> : <View />}
+        {fontsLoaded ? <Home /> : <View />}
       </GestureHandlerRootView>
     </ThemeProvider>
   )

@@ -7,7 +7,7 @@ import ICarsSvg from '@assets/svgs/logo.svg'
 import { BrandFilter } from '@components/BrandFilter'
 import { CarCard } from '@components/CarCard'
 
-import { Container, Content, CarList, Footer } from './styles'
+import { Container, CarList, Footer } from './styles'
 
 const cars = [
   {
@@ -42,19 +42,17 @@ export const Home: React.FC = () => {
     <Container>
       <StatusBar style="dark" translucent backgroundColor="transparent" />
 
-      <Content>
-        <ICarsSvg style={{ marginLeft: 24 }} />
+      <ICarsSvg style={{ marginLeft: 24 }} />
 
-        <BrandFilter />
+      <BrandFilter />
 
-        <CarList
-          data={cars}
-          keyExtractor={({ id }) => id}
-          renderItem={({ item }) => <CarCard data={item} />}
-        />
+      <CarList
+        data={cars}
+        keyExtractor={({ id }) => id}
+        renderItem={({ item }) => <CarCard data={item} />}
+      />
 
-        <Footer />
-      </Content>
+      <Footer />
     </Container>
   )
 }

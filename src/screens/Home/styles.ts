@@ -1,20 +1,21 @@
 import styled from 'styled-components/native'
-import { FlatList, FlatListProps } from 'react-native'
+import { FlatList, FlatListProps, Platform } from 'react-native'
 
 import { LinearGradient } from 'expo-linear-gradient'
 
 import { ICarDTO } from '@dtos/CarDTO'
 
+import {
+  getStatusBarHeight,
+  getBottomSpace
+} from 'react-native-iphone-x-helper'
 import { rgba } from 'polished'
 
-export const Container = styled.SafeAreaView`
+export const Container = styled.View`
   flex: 1;
-  background-color: ${({ theme }) => theme.COLORS.background[200]};
-`
+  padding-top: ${Platform.OS === 'ios' ? getStatusBarHeight() + 16 : 64}px;
 
-export const Content = styled.View`
-  flex: 1;
-  padding-top: 16px;
+  background-color: ${({ theme }) => theme.COLORS.background[200]};
 `
 
 export const CarList = styled(
@@ -23,8 +24,9 @@ export const CarList = styled(
   contentContainerStyle: {
     flexGrow: 1,
 
-    paddingHorizontal: 22,
-    paddingTop: 16
+    paddingTop: 16,
+    paddingBottom: 80,
+    paddingHorizontal: 22
   },
   showsVerticalScrollIndicator: false
 })``
@@ -38,7 +40,7 @@ export const Footer = styled(LinearGradient).attrs(({ theme }) => {
   }
 })`
   width: 100%;
-  height: 80px;
+  height: ${getBottomSpace() + 80}px;
 
   position: absolute;
   bottom: 0;
