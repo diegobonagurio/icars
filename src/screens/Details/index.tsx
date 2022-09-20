@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 
 import { StatusBar } from 'expo-status-bar'
 
 import { useNavigation, useRoute } from '@react-navigation/native'
+
+import { Modalize } from 'react-native-modalize'
 
 import { API } from '@services/api'
 import { ICarDTO } from '@dtos/carDTO'
@@ -11,7 +13,9 @@ import { CarInformation } from '@components/CarInformation'
 import { CarSlide } from '@components/CarSlide'
 import { AboutCar } from '@components/AboutCar'
 import { UserReviews } from '@components/UserReviews'
-import { AddComment } from '@components/AddComment'
+import { BottomSheet } from '@components/BottomSheet'
+
+import { AddCarNote } from '@contents/AddCarNote'
 
 import {
   Container,
@@ -20,7 +24,8 @@ import {
   TouchableGoback,
   Icon,
   Content,
-  Footer
+  Footer,
+  AddComment
 } from './styles'
 
 interface IRouteParams {
@@ -34,6 +39,12 @@ export const Details: React.FC = () => {
 
   const route = useRoute()
   const { car } = route.params as IRouteParams
+
+  const bottomSheetAddNote = useRef<Modalize>(null)
+
+  function handleAddVehicleNote() {
+    bottomSheetAddNote.current?.open()
+  }
 
   useEffect(() => {
     async function loadCarBrand() {
@@ -78,7 +89,13 @@ export const Details: React.FC = () => {
 
       <Footer />
 
-      <AddComment />
+      <AddComment onPress={handleAddVehicleNote}>
+        <Icon name="message-square" />
+      </AddComment>
+
+      <BottomSheet ref={bottomSheetAddNote}>
+        <AddCarNote />
+      </BottomSheet>
     </Container>
   )
 }

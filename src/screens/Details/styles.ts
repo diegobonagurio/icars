@@ -4,8 +4,6 @@ import { Platform } from 'react-native'
 import { Feather } from '@expo/vector-icons'
 import { LinearGradient } from 'expo-linear-gradient'
 
-import Animated from 'react-native-reanimated'
-
 import {
   getStatusBarHeight,
   getBottomSpace
@@ -17,7 +15,7 @@ export const Container = styled.View`
   background-color: ${({ theme }) => theme.COLORS.background[200]};
 `
 
-export const Header = styled(Animated.View)`
+export const Header = styled.View`
   width: 100%;
   min-height: 264px;
 
@@ -50,7 +48,7 @@ export const Icon = styled(Feather)`
   color: ${({ theme }) => theme.COLORS.background[100]};
 `
 
-export const Content = styled(Animated.ScrollView).attrs({
+export const Content = styled.ScrollView.attrs({
   contentContainerStyle: {
     flexGrow: 1,
 
@@ -74,4 +72,31 @@ export const Footer = styled(LinearGradient).attrs(({ theme }) => {
 
   position: absolute;
   bottom: 0;
+`
+
+export const AddComment = styled.TouchableOpacity.attrs({
+  activeOpacity: 0.9,
+  shadowColor: rgba('black', 0.05),
+  shadowOffset: {
+    width: 0,
+    height: 9
+  },
+  shadowOpacity: 0.1,
+  shadowRadius: 10,
+
+  elevation: 1
+})`
+  width: 60px;
+  height: 60px;
+
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 30px;
+
+  position: absolute;
+  right: 24px;
+  bottom: 36px;
+
+  background-color: ${({ theme }) => theme.COLORS.brand[100]};
 `
