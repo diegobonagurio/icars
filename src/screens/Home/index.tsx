@@ -3,6 +3,7 @@ import { Alert } from 'react-native'
 
 import { StatusBar } from 'expo-status-bar'
 
+import { useTheme } from 'styled-components/native'
 import { useNavigation } from '@react-navigation/native'
 
 import ICarsSvg from '@assets/svgs/logo.svg'
@@ -15,9 +16,13 @@ import { FilterCategories } from '@components/FilterCategories'
 import { CarCard } from '@components/CarCard'
 import { CarLoading } from '@components/CarLoading'
 
+import { Splash } from '@screens/Splash'
+
 import { Container, CarList, Footer } from './styles'
 
 export const Home: React.FC = () => {
+  const { COLORS } = useTheme()
+
   const navigation = useNavigation()
 
   const [categories, setCategories] = useState<ICategoryDTO[]>([])
@@ -86,10 +91,10 @@ export const Home: React.FC = () => {
       <StatusBar style="dark" translucent backgroundColor="transparent" />
 
       {isLoading ? (
-        <></>
+        <Splash />
       ) : (
         <>
-          <ICarsSvg style={{ marginLeft: 24 }} />
+          <ICarsSvg style={{ marginLeft: 24 }} fill={COLORS.heading[100]} />
 
           <FilterCategories
             brands={categories}

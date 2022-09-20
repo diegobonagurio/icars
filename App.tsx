@@ -1,5 +1,4 @@
 import React from 'react'
-import { View } from 'react-native'
 
 import { useFonts } from 'expo-font'
 
@@ -8,6 +7,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { ThemeProvider } from 'styled-components/native'
 import { theme } from '@global/theme'
 
+import { Splash } from '@screens/Splash'
 import { Routes } from '@routes/.'
 
 export const App: React.FC = () => {
@@ -19,7 +19,7 @@ export const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <GestureHandlerRootView style={{ flex: 1 }}>
-        {fontsLoaded ? <Routes /> : <View />}
+        {fontsLoaded ? <Routes /> : <Splash />}
       </GestureHandlerRootView>
     </ThemeProvider>
   )
