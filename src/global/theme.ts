@@ -6,16 +6,30 @@ export const theme = {
       300: '#7397F5'
     },
 
+    star: '#FFA800',
+
     heading: {
       100: '#060606',
       200: '#1A1A1A'
     },
     body: '#343434',
 
+    gray: {
+      100: '#959595',
+      200: '#E7E7E7',
+      300: '#ECECEC',
+      400: '#D3D3D3',
+      500: '#ACACAC'
+    },
+
     background: {
       100: '#FFFFFF',
-      200: '#F8F8F8'
+      200: '#F8F8F8',
+      300: '#F2F2F2'
     }
   },
-  FONTS: {}
+  FONTS: {
+    regular: 'SF_PRO-Regular',
+    medium: 'SF_PRO-Medium'
+  }
 }

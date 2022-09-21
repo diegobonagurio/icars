@@ -6,13 +6,24 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+    "orientation": "portrait",
     "ios": {
       "buildNumber": "1.0.0",
-      "bundleIdentifier": "com.icars.lucasaugusts"
+      "bundleIdentifier": "com.icars.lucasaugusts",
+      "icon": "./resources/ios/icon.png"
     },
     "android": {
       "versionCode": 1,
-      "package": "com.icars.lucasaugusts"
+      "package": "com.icars.lucasaugusts",
+      "adaptiveIcon": {
+        "foregroundImage": "./resources/android/icon.png",
+        "backgroundColor": "#245DEF"
+      }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "b7b1af0e-ac9c-4209-abe4-b18fd256b311"
+      }
     }
   }
 }
