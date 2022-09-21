@@ -1,12 +1,15 @@
 import styled from 'styled-components/native'
+import { Dimensions } from 'react-native'
 
 import Animated, { FadeOut, Easing } from 'react-native-reanimated'
+
+const { width, height } = Dimensions.get('window')
 
 export const Container = styled(Animated.View).attrs({
   exiting: FadeOut.easing(Easing.inOut(Easing.ease))
 })`
-  width: 100%;
-  height: 100%;
+  width: ${width}px;
+  height: ${height}px;
 
   justify-content: center;
   align-items: center;
