@@ -19,6 +19,11 @@
         "foregroundImage": "./resources/android/icon.png",
         "backgroundColor": "#245DEF"
       }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "b7b1af0e-ac9c-4209-abe4-b18fd256b311"
+      }
     }
   }
 }
