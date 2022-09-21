@@ -55,3 +55,8 @@ npx expo start --clear
 *If you want to run on the CLI, it's also possible thanks to [Expo Bare workflow](https://docs.expo.dev/introduction/managed-vs-bare/).*
 
 😉 Now just test the application and have fun with the app.
+
+## 🔧 Technologies used in development
+- [React Native](https://reactnative.dev/)
+- [Expo](https://expo.dev/)
+- [styled-components](https://styled-components.com/)
